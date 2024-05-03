@@ -1,4 +1,4 @@
-package com.example.test
+package com.example.test.models
 
 data class AlbumModel(
     val userID: Int,
