@@ -1,21 +1,22 @@
 package com.example.test.adapters
 
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.example.test.fragments.PhotosFragment
-import com.example.test.fragments.PostsFragment
-import com.example.test.fragments.TodosFragment
+import com.example.test.fragments.JokeFragment
+import com.example.test.fragments.ActivityFragment
+import com.example.test.fragments.RandomJokeFragment
 
-class TabPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+class TabPagerAdapter(fm: FragmentManager, behavior: Int) : FragmentPagerAdapter(fm, behavior) {
 
     private val fragments = listOf(
-        PhotosFragment(),
-        PostsFragment(),
-        TodosFragment()
+        JokeFragment(),
+        RandomJokeFragment(),
+        ActivityFragment()
     )
 
-    private val titles = listOf("Photos", "Posts", "Todos")
+    private val titles = listOf("Jokes", "Random Joke", "Activity")
 
     override fun getItem(position: Int): Fragment {
         return fragments[position]
@@ -28,4 +29,6 @@ class TabPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
     override fun getPageTitle(position: Int): CharSequence? {
         return titles[position]
     }
+
+
 }

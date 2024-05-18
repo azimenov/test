@@ -1,39 +1,29 @@
 package com.example.test.network
 
-import android.util.Log
-import com.example.test.models.AlbumModel
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.example.test.models.ActivityModel
+import com.example.test.models.Joke
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiClient {
-    private fun getAllData() {
-        val retrofit = Retrofit.Builder().baseUrl("https://jsonplaceholder.typicode.com/")
+    suspend fun getJokeList(): List<Joke> {
+        val retrofit = Retrofit.Builder().baseUrl("https://official-joke-api.appspot.com/")
             .addConverterFactory(GsonConverterFactory.create()).build()
-        val service = retrofit.create(SomeAPI::class.java)
-        service.getData().enqueue(object : Callback<List<AlbumModel>> {
-            override fun onResponse(
-                call: Call<List<AlbumModel>>,
-                response: Response<List<AlbumModel>>
-            ) {
-                if (response.isSuccessful) {
-                    val data = response.body()
+        val service = retrofit.create(JokeAPI::class.java)
+        return service.getData()
+    }
 
-                    if (data != null) {
-                        Log.d("data", data.toString())
-                    } else {
-                        Log.e("API Response", "Response body is null")
-                    }
-                } else {
-                    Log.e("API Response", "Unsuccessful response: ${response.code()}")
-                }
-            }
+    suspend fun getActivity(): ActivityModel{
+        val retrofit = Retrofit.Builder().baseUrl("https://www.boredapi.com/api/")
+            .addConverterFactory(GsonConverterFactory.create()).build()
+        val service = retrofit.create(ActivityAPI::class.java)
+        return service.getActivity()
+    }
 
-            override fun onFailure(call: Call<List<AlbumModel>>, t: Throwable) {
-                Log.e("API Failure", "Failed to fetch data: ${t.message}")
-            }
-        })
+    suspend fun getRandomJoke(): Joke {
+        val retrofit = Retrofit.Builder().baseUrl("https://official-joke-api.appspot.com/")
+            .addConverterFactory(GsonConverterFactory.create()).build()
+        val service = retrofit.create(JokeAPI::class.java)
+        return service.getRandomJoke()
     }
 }

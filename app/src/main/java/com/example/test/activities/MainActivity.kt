@@ -2,6 +2,7 @@ package com.example.test.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.example.test.R
 import com.example.test.adapters.TabPagerAdapter
@@ -15,7 +16,9 @@ class MainActivity : AppCompatActivity() {
 
         // Initialize ViewPager and TabLayout
         val viewPager: ViewPager = findViewById(R.id.viewPager)
-        viewPager.adapter = TabPagerAdapter(supportFragmentManager)
+        val adapter = TabPagerAdapter(supportFragmentManager, FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
+
+        viewPager.adapter = adapter
 
         val tabLayout: TabLayout = findViewById(R.id.tabLayout)
         tabLayout.setupWithViewPager(viewPager)
