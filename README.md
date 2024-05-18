@@ -21,5 +21,5 @@ JokeApp is an Android application that allows users to browse jokes, get a rando
 3. Build and run the app on an Android device or emulator.
 
 ## Contributors
-- **Amirbay Nurbolat:**
-- **Azimenov Margulan:**
+- **Amirbay Nurbolat**
+- **Azimenov Margulan**
